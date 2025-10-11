@@ -1,6 +1,51 @@
+html {
+  --color-accent: oklch(51.604% 0.16482 318.503);
+  accent-color: var(--color-accent);
+}
 body {
   /* Set line height to 1.5 times the font size
 	   and use the OS’s UI font as the website font
 	 */
   font: 100%/1.5 system-ui;
+  max-width: 100ch;
+  margin-inline: auto;
+  padding: 0 2rem;
+}
+
+nav {
+  display: flex;
+  margin-bottom: auto;
+  border-bottom: 1px solid oklch(80% 3% 200);
+}
+
+nav a {
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.5em;
+}
+
+nav a.current {
+  border-bottom: 0.4em solid oklch(80% 3% 200);
+  padding-bottom: 0.4em;
+}
+
+nav a:hover {
+  border-bottom: 0.4em solid var(--color-accent);
+  background-color: oklch(from var(--color-accent) 95% 5% h);
+  padding-bottom: 0.4em;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+label {
+  margin-block: 0.5em;
 }
