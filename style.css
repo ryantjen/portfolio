@@ -71,34 +71,48 @@ button {
   margin: 0;
 }
 
-h1 {
-  font-size: 400%;
-}
-
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
+  border-bottom: none;
+  margin: 0;
   text-wrap: balance;
+  padding: 0;
+}
+
+h1 {
+  font-size: 400%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .resume-header h1 {
   font-size: 3em;
   font-weight: 700;
+  margin: 0;
 }
 
-.skills, .leadership, .resumeprojects, .education {
+.skills,
+.leadership,
+.resumeprojects,
+.education {
   margin-top: 2em;
 }
 
-.job, .project, .school, .coursework {
+.job,
+.project,
+.school,
+.coursework {
   margin-bottom: 1.5em;
 }
 
 h2 {
   border-bottom: 2px solid #ccc;
-  padding-bottom: 0.25em;
+  padding-bottom: .6em;
+  margin-top: 1em;
 }
 
 h3 {
   font-weight: 600;
   margin-bottom: 0.25em;
+  padding-top: 0.6em;
 }
