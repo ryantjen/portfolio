@@ -1,0 +1,74 @@
+[
+    {
+        "title": "Country Happiness EDA",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Exploring the correlation between country happiness and urban population percentage. Performing OLS regression to examine other confounding factors such as GDP, life expectancy, and social support."
+    },
+    {
+        "title": "Identifying Sleep Deserts",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Performing analysis on the possibility of sleep deserts. Looking for correlations between overall sleep quality and factors such as air polltion, GDP and socioeconomic score."
+    },
+    {
+        "title": "High Protein Recipes EDA",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Perfoming analysis on high protein recipes and looking at their feasibility to cook. Also exploring correlations between rating and time to cook to further healthy eating."
+    },
+    {
+        "title": "Climate Change Impact on Cities",
+        "year": "2023",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Analyzing climate change data to assess the vulnerability of major cities to rising temperatures and extreme weather events."
+    },
+    {
+        "title": "Electric Vehicle Adoption Trends",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Examining the growth of electric vehicle adoption worldwide, focusing on policies, incentives, and regional differences."
+    },
+    {
+        "title": "Remote Work Productivity Study",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Analyzing survey data to understand how remote work affects employee productivity, collaboration, and job satisfaction."
+    },
+    {
+        "title": "Renewable Energy Investment Analysis",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Exploring investment patterns in solar, wind, and other renewable energy projects to evaluate ROI and growth potential."
+    },
+    {
+        "title": "Urban Green Spaces Study",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Investigating the relationship between urban green spaces and public health outcomes in densely populated cities."
+    },
+    {
+        "title": "AI in Healthcare Applications",
+        "year": "2023",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Assessing the implementation of AI tools in medical diagnosis, treatment planning, and patient monitoring."
+    },
+    {
+        "title": "Food Waste Reduction Strategies",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Analyzing approaches to reduce food waste at the consumer and industrial levels, and evaluating their effectiveness."
+    },
+    {
+        "title": "Sustainable Fashion Trends",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Studying sustainable practices in the fashion industry, including material sourcing, recycling, and consumer behavior."
+    },
+    {
+        "title": "Digital Literacy in Education",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Exploring how digital literacy programs impact student learning outcomes and technology adoption in classrooms."
+    }
+]
