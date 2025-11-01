@@ -143,3 +143,79 @@ h3 {
   grid-row: 2;
   margin: 0;
 }
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;  
+  overflow: visible;
+}
+
+.legend {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 0.7em 1em;           /* slightly smaller gaps */
+  padding: 0.7em 1.5em;       /* reduce internal padding */
+  margin-top: 0.5em;
+  list-style: none;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  border:2px solid gray;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+}
+
+.swatch {
+  width: 16px;
+  height: 16px;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pie-plot-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.searchBar {
+  width: 100%;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  border: 2px solid gray;
+  border-radius: 8px;
+  margin-bottom: 1.5em;
+}
+
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
+path {
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.selected {
+  --color: oklch(51.604% 0.16482 318.503) !important;
+
+  &:is(path) {
+    fill: var(--color);
+  }
+}
