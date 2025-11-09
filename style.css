@@ -343,12 +343,16 @@ circle.selected {
 #language-breakdown dt {
   font-weight: 600;
   margin-right: 0.3rem;
-  color: #555;
 }
 
 #language-breakdown dd {
   display: inline;        /* keep count next to label */
   margin: 0;
   font-weight: 700;
-  color: #111;
+}
+
+#selection-count {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 1rem;
 }
