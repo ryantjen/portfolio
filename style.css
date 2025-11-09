@@ -348,7 +348,7 @@ circle.selected {
 #language-breakdown dd {
   display: inline;        /* keep count next to label */
   margin: 0;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 #selection-count {
