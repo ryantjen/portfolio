@@ -356,3 +356,12 @@ circle.selected {
   font-weight: 700;
   margin-top: 1rem;
 }
+
+#time-slider {
+  flex: 1;
+  align-items: baseline;
+}
+
+#time-slider time {
+  margin-left: auto;
+}
