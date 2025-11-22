@@ -444,7 +444,7 @@ scroller2
 
 const stepHeight = 100; // pixels per step
 d3.selectAll('#scrolly-1 .step').style('height', `${stepHeight}px`);
-d3.select('#scrolly-1').style('height', `${stepHeight * commits.length + 100}px`);
+d3.select('#scrolly-1').style('height', `${stepHeight * commits.length + 150}px`);
 
 d3.selectAll('#scrolly-2 .step').style('height', `${stepHeight}px`);
 d3.select('#scrolly-2').style('height', `${stepHeight * commits.length + 400}px`);
