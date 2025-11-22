@@ -1,4 +1,5 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 
 let xScale, yScale;
 
@@ -45,7 +46,7 @@ function processCommits(data) {
       });
 
       return ret;
-    });
+    }).sort((a, b) => d3.ascending(a.datetime, b.datetime));
 }
 
 function renderCommitInfo(data, commits) {
@@ -279,21 +280,6 @@ const timeDisplay = document.getElementById("commit-time");
 
 let filteredCommits = commits;
 
-function onTimeSliderChange() {
-  // 1. update commitProgress
-  commitProgress = Number(slider.value);
-  // 2. update commitMaxTime using invert()
-  commitMaxTime = timeScale.invert(commitProgress);
-  // 3. update <time> display
-  timeDisplay.textContent = commitMaxTime.toLocaleString(undefined, {
-    dateStyle: "long",
-    timeStyle: "short"
-  });
-
-  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
-  updateScatterPlot(data, filteredCommits);
-}
-
 function updateScatterPlot(data, commits) {
   const width = 1000;
   const height = 600;
@@ -345,6 +331,121 @@ function updateScatterPlot(data, commits) {
     });
 }
 
-slider.addEventListener("input", onTimeSliderChange);
+function updateStyleDisplay(filteredCommits) {
+  let lines = filteredCommits.flatMap(d => d.lines);
+  let files = d3
+  .groups(lines, (d) => d.file)
+  .map(([name, lines]) => {
+    return { name, lines };
+  })
+  .sort((a, b) => b.lines.length - a.lines.length);
 
-onTimeSliderChange();
+  let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+  let fileGroups = d3.select('#files')
+    .selectAll('div.file')
+    .data(files, d => d.name)
+    .join(
+      enter => {
+        const div = enter.append('div').attr('class', 'file');
+        div.append('dt')
+          .call(dt => {
+            dt.append('code');
+            dt.append('br');
+            dt.append('small'); // <-- this gets text below
+          });
+        div.append('dd'); 
+        return div;
+      }
+    );
+
+  // filename
+  fileGroups.select('dt code')
+    .text(d => d.name);
+
+  fileGroups.select('dt small')
+    .text(d => ` (${d.lines.length} lines)`);
+
+  // dots container
+  const dds = fileGroups.select('dd');
+  dds.html('');
+
+  dds.each(function(d) {
+    d3.select(this)
+      .selectAll('div.loc')
+      .data(d.lines)
+      .join('div')
+      .attr('class', 'loc')
+      .attr('style', (d) => `--color: ${colors(d.type)}`);
+  });
+}
+
+d3.selectAll('#scatter-story')
+  .selectAll('.step')
+  .data(commits)
+  .join('div')
+  .attr('class', 'step')
+  .html(
+    (d, i) => `
+		On ${d.datetime.toLocaleString('en', {
+      dateStyle: 'full',
+      timeStyle: 'short',
+    })},
+		I made <a href="${d.url}" target="_blank">${
+      i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
+    }</a>.
+		I edited ${d.totalLines} lines across ${
+      d3.rollups(
+        d.lines,
+        (D) => D.length,
+        (d) => d.file,
+      ).length
+    } files.
+		Then I looked over all I had made, and I saw that it was very good.
+	`,
+
+  );
+
+function onStepEnter(response) {
+  const commit = response.element.__data__;
+
+  if (!commit) return;
+
+  const filteredCommits = commits.filter(d => d.datetime <= commit.datetime);
+  updateScatterPlot(data, filteredCommits);
+  d3.selectAll('#scatter-story .step').classed('active', d => d === commit);
+}
+
+function onStepEnter2(response) {
+  const commit = response.element.__data__;
+
+  if (!commit) return;
+
+  const filteredCommits = commits.filter(d => d.datetime <= commit.datetime);
+  updateStyleDisplay(filteredCommits);
+  d3.selectAll('#scatter-story .step').classed('active', d => d === commit);
+}
+
+const scroller = scrollama();
+scroller
+  .setup({
+    container: '#scrolly-1',
+    step: '#scrolly-1 .step',
+  })
+  .onStepEnter(onStepEnter);
+
+const scroller2 = scrollama();
+scroller2
+  .setup({
+    container: '#scrolly-2',
+    step: '#scrolly-2 .step',
+  })
+  .onStepEnter(onStepEnter2);
+
+const stepHeight = 100; // pixels per step
+d3.selectAll('#scrolly-1 .step').style('height', `${stepHeight}px`);
+d3.select('#scrolly-1').style('height', `${stepHeight * commits.length + 100}px`);
+
+d3.selectAll('#scrolly-2 .step').style('height', `${stepHeight}px`);
+d3.select('#scrolly-2').style('height', `${stepHeight * commits.length + 400}px`);
+
